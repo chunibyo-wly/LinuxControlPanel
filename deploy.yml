@@ -1,0 +1,23 @@
+---
+- hosts: cugergz.chunibyo.xyz
+  vars:
+    repo_folder: /root/Panel
+  remote_user: root
+  tasks:
+    - name: 从git仓库下载代码
+      git:
+        repo: https://github.com/chunibyo-wly/LinuxControlPanel.git
+        dest: "{{ repo_folder }}"
+        update: yes
+    - name: 创建flask环境
+      pip:
+        requirements: "{{ repo_folder }}/requirements.txt"
+        virtualenv: "{{ repo_folder }}/venv"
+        virtualenv_command: /usr/bin/python3 -m venv
+    - name: 关闭老进程
+      shell: ps aux | grep main.p[y] | awk '{print $2}' | xargs kill
+      ignore_errors: true
+    - name: 启动服务
+      shell: "nohup {{repo_folder}}/venv/bin/python {{ repo_folder  }}/main.py &"
+
+
