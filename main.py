@@ -1,4 +1,4 @@
-#! /root/venv/bin/python
+#! ./venv/bin/python
 
 from functools import wraps
 from time import sleep
