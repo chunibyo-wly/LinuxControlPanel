@@ -1,0 +1,7 @@
+flask~=1.1.2
+flask-cors
+Flask-SocketIO
+commands
+
+psutil~=5.7.0
+PyYAML~=5.3.1
