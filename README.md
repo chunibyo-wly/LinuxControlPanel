@@ -100,22 +100,52 @@ vim /etc/resolvconf/resolv.conf.d/base
 
 # :three: DevOps工作流
 
-## 3.1 SonarQube
+## 3.1 [SonarQube](https://www.fosstechnix.com/install-sonarqube-on-ubuntu/#step-3-download-and-install-sonarqube-on-ubuntu)
 
 1. MySQL建库
 
    ```sql
-   create database db_sonar character set utf8 collate utf8_general_ci;
+   create database sonarqube character set utf8 collate utf8_general_ci;
    ```
 
-2. 建立 `sonar` 用户
+2. 建立 `sonar` 用户(因为mysql在容器里面并且没有开放端口, 所以直接监听公网最方便)
 
    ```sql
-    create user 'sonar'@'127.0.0.1' identified by 'foo';
+    create user 'sonar'@'%' identified by 'foo';
     
-    grant all privileges on db_sonar.* to 'sonar'@'127.0.0.1' ;
+    grant all privileges on sonar.* to 'sonar'@'%' ;
     
     flush privileges;
    ```
 
+3. 安装sonar
+
+4. 打包成service
+
+   ```
+   /lib/systemd/system/sonar.service
    
+   [Unit]
+   Description=SonarQube service
+   After=syslog.target network.target
+   
+   [Service]
+   Type=forking
+   
+   ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start
+   ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop
+   
+   User=sonar
+   Group=sonar
+   Restart=always
+   
+   LimitNOFILE=65536
+   LimitNPROC=4096
+   
+   
+   [Install]
+   WantedBy=multi-user.target
+   ```
+
+   ![image-20200516100948576](README.assets/image-20200516100948576.png)
+

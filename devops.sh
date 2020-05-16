@@ -1,1 +1,0 @@
-pytest --junitxml report.xml test/*
