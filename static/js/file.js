@@ -47,6 +47,7 @@ $(function () {
         }
         $("#file-list").empty().append(html);
 
+        // 文件夹点击事件
         $("td.name").click(function () {
             if ($(this).attr("file_type") === "dir") {
                 path = path + $(this).attr("file_name") + "/"
