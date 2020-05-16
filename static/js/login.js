@@ -14,10 +14,7 @@ $(function () {
         };
 
         $.ajax(settings).done(function (response) {
-            if (response["status"] === "ok") {
-                window.location.href = "http://" + window.location.host;
-            }
-
+            if (response["status"] === "ok") {window.location.href = "http://" + window.location.host;}
         });
     })
 })
