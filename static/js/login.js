@@ -17,6 +17,7 @@ $(function () {
             if (response["status"] === "ok") {
                 window.location.href = "http://" + window.location.host;
             }
+
         });
     })
 })
