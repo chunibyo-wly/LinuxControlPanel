@@ -1,22 +1,22 @@
-/*!
-    * Start Bootstrap - SB Admin v6.0.0 (https://startbootstrap.com/templates/sb-admin)
-    * Copyright 2013-2020 Start Bootstrap
-    * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-sb-admin/blob/master/LICENSE)
-    */
-(function ($) {
-    "use strict";
+$(function () {
+    $("#login-btn").click(function () {
+        let settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "/api/login",
+            "method": "POST",
+            "headers": {"content-type": "application/json"},
+            "processData": false,
+            "data": JSON.stringify({
+                "name": $("#inputEmailAddress").val(),
+                "passwd": $("#inputPassword").val()
+            })
+        };
 
-    // Add active state to sidbar nav links
-    var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
-    $("#layoutSidenav_nav .sb-sidenav a.nav-link").each(function () {
-        if (this.href === path) {
-            $(this).addClass("active");
-        }
-    });
-
-    // Toggle the side navigation
-    $("#sidebarToggle").on("click", function (e) {
-        e.preventDefault();
-        $("body").toggleClass("sb-sidenav-toggled");
-    });
-})(jQuery);
+        $.ajax(settings).done(function (response) {
+            if (response["status"] === "ok") {
+                window.location.href = "http://" + window.location.host;
+            }
+        });
+    })
+})

@@ -30,6 +30,7 @@ def hello_world():
 
 @app.route('/api/login', methods=['POST'])
 def log_in():
+    print(request.form)
     with open('./config.yaml', 'r') as f:
         user = yaml.load(f, Loader=yaml.SafeLoader)['user']
         if request.json['name'] == user['name'] and request.json['passwd'] == user['passwd']:

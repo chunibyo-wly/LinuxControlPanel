@@ -7,18 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>Page Title - SB Admin</title>
-    <link href="../lib/css/style.css" rel="stylesheet"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous">
-    </script>
+    <title>石之海</title>
+    <link href="../css/login.css" rel="stylesheet"/>
+    <style>
+        .content {
+            z-index: 1;
+        }
+
+        .content:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.15);
+            z-index: -1;
+        }
+    </style>
 </head>
 
-<body class="bg-primary" style="background-image: url(''); background-size: 100% 100%">
+<body class="" style="background-image: url('../image/bg.jpg'); background-size: 100% 100%">
 <div id="layoutAuthentication">
     <div id="layoutAuthentication_content">
         <main>
-            <div class="container">
-                <div class="row justify-content-center">
+            <div class="container content">
+                <div class="row justify-content-center" style="margin-top: 150px">
                     <div class="col-lg-5">
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                             <div class="card-header">
@@ -26,28 +40,21 @@
                             </div>
                             <div class="card-body">
                                 <form>
-                                    <div class="form-group"><label class="small mb-1"
-                                                                   for="inputEmailAddress">账号</label><input
-                                            class="form-control py-4"
-                                            id="inputEmailAddress" type="email" placeholder="输入账号"/>
-                                    </div>
-                                    <div class="form-group"><label class="small mb-1"
-                                                                   for="inputPassword">密码</label><input
-                                            class="form-control py-4"
-                                            id="inputPassword" type="password" placeholder="输入密码"/></div>
                                     <div class="form-group">
-                                        <div class="custom-control custom-checkbox"><input
-                                                class="custom-control-input" id="rememberPasswordCheck"
-                                                type="checkbox"/><label class="custom-control-label"
-                                                                        for="rememberPasswordCheck">记住密码</label></div>
+                                        <label class="small mb-1" for="inputEmailAddress">账号</label>
+                                        <input class="form-control py-4" id="inputEmailAddress" type="email"
+                                               placeholder="输入账号"/>
                                     </div>
-                                    <div
-                                            class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                        <a class="small" href="password.html">忘记密码?</a>
-                                        <a class="btn btn-primary" href="index.html">登录</a></div>
+                                    <div class="form-group">
+                                        <label class="small mb-1" for="inputPassword">密码</label>
+                                        <input class="form-control py-4" id="inputPassword" type="password"
+                                               placeholder="输入密码"/>
+                                    </div>
+                                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                        <a class="small" href=""></a>
+                                        <a class="btn btn-primary" id="login-btn">登录</a></div>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -55,28 +62,8 @@
         </main>
     </div>
 </div>
-<script>
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "http://chunibyo.xyz:8888/api/login",
-        "method": "POST",
-        "headers": {
-            "content-type": "application/json",
-            "cache-control": "no-cache",
-            "postman-token": "1e40b855-909a-fa20-6870-5e3d062fd69e"
-        },
-        "processData": false,
-        "data": "{\n\t\"name\": \"admin\",\n\t\"passwd\": \"admin\"\n}"
-    }
-
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-    });
-</script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous">
-</script>
+<script src="../lib/js/jquery.js" crossorigin="anonymous"></script>
+<script src="../lib/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <script src="../js/login.js"></script>
 </body>
 
