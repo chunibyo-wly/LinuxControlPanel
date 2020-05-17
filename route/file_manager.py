@@ -14,16 +14,15 @@ def handle_file_list():
         })
 
 
-@app.route('/api/file', methods=['GET'])
+@app.route('/api/file', methods=['GET', 'DELETE'])
 def download_file():
     if request.method == 'GET':
         # 下载文件
         print(request.values.get('path'))
         return flask.send_file(request.values.get('path'), as_attachment=True)
     elif request.method == 'DELETE':
-        pass
+        # 删除文件
+        FileManager.delete_file(request.json['path'])
+        return jsonify({"status": "OK"})
     elif request.method == 'PATCH':
-        pass
-    return jsonify({
-        "status": "OK"
-    })
+        return jsonify({"status": "OK"})

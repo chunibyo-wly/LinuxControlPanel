@@ -44,6 +44,11 @@ class FileManager:
             })
         return file
 
+    @staticmethod
+    def delete_file(path):
+        print("rm -rf " + path)
+        print(getoutput("rm -rf " + path))
+
 
 if __name__ == '__main__':
-    print(FileManager._change_mode_format('rw-r--rwx'))
+    print(FileManager.delete_file(r'/home/chunibyo/Desktop/test'))

@@ -13,8 +13,7 @@ $(function () {
         return path_str;
     }
 
-    let get_file_list = function (_path) {
-        console.log(_path);
+    let get_file_list = function (_path, change = true) {
         let settings = {
             "async": true,
             "crossDomain": true,
@@ -26,8 +25,11 @@ $(function () {
             if (typeof (response) === "string") {
                 response = JSON.parse(response)
             }
-            // console.log(response)
-            page_index = 1;
+
+            if (change) {
+                page_index = 1;
+                $("#page-index").html('<a href="#">' + page_index + '</a>');
+            }
             file_list = response["file"];
             get_file_list_by_index(page_index - 1);
         });
@@ -49,7 +51,7 @@ $(function () {
                 '        <div class="btn-group btn-group-lg">' +
                 '            <a download class="btn btn-info" href="/api/file?path=' + array2str(path) + file_list[i]["name"] + '">下载</a>' +
                 '            <button class="btn btn-info file-delete" file_name="' + file_list[i]["name"] + '">删除</button>' +
-                '            <button class="btn btn-info file-rename" file_name="' + file_list[i]["name"] + '">重命名</button>' +
+                // '            <button class="btn btn-info file-rename" file_name="' + file_list[i]["name"] + '">重命名</button>' +
                 '        </div>' +
                 '    </td>' +
                 '</tr>'
@@ -77,6 +79,28 @@ $(function () {
             }
         })
 
+        // 删除文件
+        $("button.file-delete").click(function () {
+            delete_file(array2str(path) + $(this).attr("file_name"));
+            get_file_list(array2str(path));
+        })
+    }
+
+    let delete_file = function (_path) {
+        let settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "/api/file",
+            "method": "DELETE",
+            "headers": {"content-type": "application/json"},
+            "processData": false,
+            "data": JSON.stringify({
+                "path": _path
+            })
+        };
+
+        $.ajax(settings).done(function (response) {
+        });
     }
 
     $(".pagination li:first").click(function () {
