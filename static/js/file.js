@@ -1,15 +1,24 @@
 $(function () {
 
-    let path = "/";
+    let path = [];
     let page_index = 1;
     let list_num = 15;
     let file_list;
 
+    let array2str = function (path_array) {
+        let path_str = "/"
+        path_array.forEach(function (item) {
+            path_str = path_str + item + "/"
+        })
+        return path_str;
+    }
+
     let get_file_list = function (_path) {
+        console.log(_path);
         let settings = {
             "async": true,
             "crossDomain": true,
-            "url": "/api/file?path=" + _path,
+            "url": "/api/file_list?path=" + _path,
             "method": "GET"
         };
 
@@ -38,9 +47,9 @@ $(function () {
                 '    <td style="vertical-align: middle;">' + file_list[i]["owner"] + '</td>' +
                 '    <td style="vertical-align: middle; width: 500px">' +
                 '        <div class="btn-group btn-group-lg">' +
-                '            <button class="btn btn-info">下载</button>' +
-                '            <button class="btn btn-info">删除</button>' +
-                '            <button class="btn btn-info">重命名</button>' +
+                '            <a download class="btn btn-info" href="/api/file?path=' + array2str(path) + file_list[i]["name"] + '">下载</a>' +
+                '            <button class="btn btn-info file-delete" file_name="' + file_list[i]["name"] + '">删除</button>' +
+                '            <button class="btn btn-info file-rename" file_name="' + file_list[i]["name"] + '">重命名</button>' +
                 '        </div>' +
                 '    </td>' +
                 '</tr>'
@@ -50,18 +59,24 @@ $(function () {
         // 文件夹点击事件
         $("td.name").click(function () {
             if ($(this).attr("file_type") === "dir") {
-                path = path + $(this).attr("file_name") + "/"
-                get_file_list(path);
+                if ($(this).attr("file_name") === ".") {
 
-                let html = ""
-                path.split("/").forEach(function (item) {
-                    html = html + "" +
-                        "<li>" + item + "</li>"
+                } else if ($(this).attr("file_name") === "..") {
+                    path.pop();
+                } else {
+                    path.push($(this).attr("file_name"));
+                }
+
+                get_file_list(array2str(path));
+
+                let html = "<li></li>"
+                path.forEach(function (item) {
+                    html = html + "<li>" + item + "</li>"
                 })
-                // html = html + "<li></li>"
                 $("#path").empty().append(html);
             }
         })
+
     }
 
     $(".pagination li:first").click(function () {
@@ -77,5 +92,5 @@ $(function () {
     })
 
 
-    get_file_list(path);
+    get_file_list(array2str(path));
 })
