@@ -12,7 +12,7 @@ def get_process():
                 ProcessManger.get_process(),
                 key=lambda item: item['cpu'],
                 reverse=True
-            )
+            )[:20]
         )
     elif request.method == 'DELETE':
         try:
