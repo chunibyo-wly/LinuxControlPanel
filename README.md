@@ -97,6 +97,16 @@ vim /etc/resolvconf/resolv.conf.d/base
    gpasswd -d chunibyo test_group
    ```
 
+### 2.3 docker
+
+```bash
+docker run --name some-mysql --restart=always -e MYSQL_ROOT_PASSWORD=foo -d mysql:latest
+
+docker run --name some-nginx --restart=unless-stopped -d nginx
+
+docker run --name some-redis --restart=unless-stopped  -d redis
+```
+
 
 # :three: DevOps工作流
 

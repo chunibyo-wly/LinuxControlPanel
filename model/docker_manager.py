@@ -7,18 +7,32 @@ class DockerManager:
 
     @staticmethod
     def get_container():
-        info = getoutput('docker stats --no-stream').split('\n')
-        container = []
-
-        for i in info[1:]:
-            tmp = i.split(' ')
-            container.append({
-                "container_id": tmp[0],
-                "name": tmp[8],
-                "cpu": tmp[25],
-                "mem": tmp[45]
+        container_id_run = set(getoutput("docker ps | awk ' NR>1 {print $1} '").split('\n'))
+        container_id_stop = set(getoutput("docker ps -a | awk ' NR>1 {print $1} '").split('\n')) - container_id_run
+        container_run = []
+        container_stop = []
+        for i in container_id_run:
+            info = getoutput("docker stats --no-stream " + i + " | awk 'NR>1 {print $0}'").split(' ')
+            info = [x for x in info if x != ""]
+            container_run.append({
+                "container_id": i,
+                "name": info[1],
+                "cpu": info[2],
+                "mem": info[6]
             })
-        return container
+        for i in container_id_stop:
+            info = getoutput("docker stats --no-stream " + i + " | awk 'NR>1 {print $0}'").split(' ')
+            info = [x for x in info if x != ""]
+            container_stop.append({
+                "container_id": i,
+                "name": info[1],
+                "cpu": info[2],
+                "mem": info[6]
+            })
+        return {
+            "container_run": container_run,
+            "container_stop": container_stop
+        }
 
     def stop_container(self):
         getoutput('docker stop {}'.format(self.container_id))

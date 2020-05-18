@@ -136,48 +136,92 @@
                             <i class="fa fa-star"></i> 石之海
                         </li>
                         <li class="active">
-                            <i class="fa fa-dashboard"></i> 进程管理
+                            <i class="fa fa-dashboard"></i> 容器管理
                         </li>
                     </ol>
                 </div>
             </div>
             <!-- /.row -->
 
+            <!--第一行-->
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-0">
-
+                <!--运行中的容器-->
+                <div class="col-lg-10 col-lg-offset-1">
                     <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover table-striped table-bordered text-center">
-                                    <thead>
-                                    <tr>
-                                        <th style="text-align: center">进程名</th>
-                                        <th style="text-align: center">%CPU</th>
-                                        <th style="text-align: center">%MEM</th>
-                                        <th style="text-align: center">状态</th>
-                                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="proc-list">
-<!--                                    <tr pid="123">-->
-<!--                                        <td style="vertical-align: middle;">d</td>-->
-<!--                                        <td style="vertical-align: middle;">d</td>-->
-<!--                                        <td style="vertical-align: middle;">d</td>-->
-<!--                                        <td style="vertical-align: middle;">d</td>-->
-<!--                                        <td>-->
-<!--                                            <button class="btn btn-sm btn-danger">停止</button>-->
-<!--                                        </td>-->
-<!--                                    </tr>-->
-                                    </tbody>
-                                </table>
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> 运行中</h3>
+                        </div>
+                        <div class="panel-body" id="container-run">
+                            <div class="list-group">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-bordered text-center">
+                                        <thead>
+                                        <tr>
+                                            <th style="text-align: center">容器名</th>
+                                            <th style="text-align: center">CPU%</th>
+                                            <th style="text-align: center">MEM%</th>
+                                            <th style="text-align: center">操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="run-list">
+<!--                                        <tr pid="123">-->
+<!--                                            <td style="vertical-align: middle;">d</td>-->
+<!--                                            <td style="vertical-align: middle;">d</td>-->
+<!--                                            <td style="vertical-align: middle;">d</td>-->
+<!--                                            <td style="width: 400px;">-->
+<!--                                                <button class="btn btn-sm btn-danger">停止</button>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
+                <!--运行中的容器-->
             </div>
+            <!--第一行-->
+
+            <!--第二行-->
+            <div class="row">
+                <!--停止中的容器-->
+                <div class="col-lg-10 col-lg-offset-1">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> 停止中</h3>
+                        </div>
+                        <div class="panel-body" id="container-stop">
+                            <div class="list-group">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-bordered text-center">
+                                        <thead>
+                                        <tr>
+                                            <th style="text-align: center">容器名</th>
+                                            <th style="text-align: center">CPU%</th>
+                                            <th style="text-align: center">MEM%</th>
+                                            <th style="text-align: center">操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="stop-list">
+<!--                                        <tr pid="123">-->
+<!--                                            <td style="vertical-align: middle;">d</td>-->
+<!--                                            <td style="vertical-align: middle;">d</td>-->
+<!--                                            <td style="vertical-align: middle;">d</td>-->
+<!--                                            <td style="width: 400px;">-->
+<!--                                                <button class="btn btn-sm btn-info">启动</button>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--停止中的容器-->
+            </div>
+            <!--第二行-->
 
         </div>
         <!-- /.container-fluid -->
@@ -209,7 +253,7 @@
 <!--<script src="../lib/js/plugins/morris/morris.min.js"></script>-->
 <!--<script src="../lib/js/plugins/morris/morris-data.js"></script>-->
 
-<script src="../js/process.js"></script>
+<script src="../js/docker.js"></script>
 
 
 </body>

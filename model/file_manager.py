@@ -23,7 +23,6 @@ class FileManager:
         info = getoutput('ls -al {}'.format(path)).split('\n')
         file = []
         for i in info[1:]:
-            # TODO: 切空格有问题, 需要调用py的库函数
             tmp = i.split(' ')
             tmp = [x for x in tmp if x != ""]
 

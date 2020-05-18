@@ -1,4 +1,5 @@
 from .dns import *
+from .docker_manager import *
 from .file_manager import *
 from .login import *
 from .parameter import *
