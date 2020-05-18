@@ -18,6 +18,6 @@
       shell: ps aux | grep main.p[y] | awk '{print $2}' | xargs kill
       ignore_errors: true
     - name: 启动服务
-      shell: "nohup {{repo_folder}}/venv/bin/python {{ repo_folder  }}/main.py &"
+      shell: "nohup sudo {{repo_folder}}/venv/bin/python {{ repo_folder  }}/main.py &"
 
 

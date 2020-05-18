@@ -61,20 +61,3 @@ class SystemWatch:
             'io_sent': round((cur_io_sent - pre_io_sent)),
             'io_recv': round((cur_io_recv - pre_io_recv))
         }
-
-    @staticmethod
-    def get_process():
-        process = {}
-        for i in psutil.pids():
-            proc = psutil.Process(i)
-            if proc.exe() not in process:
-                process[proc.exe()] = {
-                    "mem": proc.cpu_percent(),
-                    "cpu": proc.memory_percent(),
-                    "status": proc.status()
-                }
-        return process
-
-
-if __name__ == '__main__':
-    print(SystemWatch.get_process())
