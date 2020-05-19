@@ -1,6 +1,7 @@
 from .dns import *
 from .docker_manager import *
 from .file_manager import *
+from .ftp_manager import *
 from .login import *
 from .parameter import *
 from .process_manager import *

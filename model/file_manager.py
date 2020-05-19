@@ -2,7 +2,8 @@ from subprocess import getstatusoutput, getoutput, Popen, PIPE
 
 
 class FileManager:
-    def __init__(self):
+    def __init__(self, path):
+        self.path = path
         pass
 
     @staticmethod
@@ -18,9 +19,8 @@ class FileManager:
             print(e)
             print(mode)
 
-    @staticmethod
-    def get_file_list(path):
-        info = getoutput('ls -al {}'.format(path)).split('\n')
+    def get_file_list(self):
+        info = getoutput('ls -al {}'.format(self.path)).split('\n')
         file = []
         for i in info[1:]:
             tmp = i.split(' ')
@@ -43,10 +43,12 @@ class FileManager:
             })
         return file
 
-    @staticmethod
-    def delete_file(path):
-        print("rm -rf " + path)
-        print(getoutput("rm -rf " + path))
+    def delete_file(self):
+        print("rm -rf " + self.path)
+        print(getoutput("rm -rf " + self.path))
+
+    def upload(self):
+        pass
 
 
 if __name__ == '__main__':

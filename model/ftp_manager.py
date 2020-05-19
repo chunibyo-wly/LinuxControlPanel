@@ -1,9 +1,21 @@
 from subprocess import getstatusoutput, getoutput, Popen, PIPE
 
+from model.file_manager import FileManager
 
-class FtpManager:
-    def __init__(self):
-        pass
+
+class FtpManager(FileManager):
+    def __init__(self, path):
+        self.root_path = "/srv/ftp"
+        super().__init__(self.root_path + path)
+
+    def get_file_list(self):
+        return super().get_file_list()
+
+    def delete_file(self):
+        super().delete_file()
+
+    def upload(self):
+        super().upload()
 
     @staticmethod
     def install():

@@ -10,7 +10,7 @@ def handle_file_list():
     # 获取目录信息
     if request.method == 'GET':
         return jsonify({
-            "file": FileManager.get_file_list(request.args.get('path'))
+            "file": FileManager(request.args.get('path')).get_file_list()
         })
 
 
@@ -22,7 +22,7 @@ def download_file():
         return flask.send_file(request.values.get('path'), as_attachment=True)
     elif request.method == 'DELETE':
         # 删除文件
-        FileManager.delete_file(request.json['path'])
+        FileManager(request.json['path']).delete_file()
         return jsonify({"status": "OK"})
     elif request.method == 'PATCH':
         return jsonify({"status": "OK"})
