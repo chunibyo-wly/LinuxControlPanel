@@ -9,6 +9,7 @@
         repo: https://github.com/chunibyo-wly/LinuxControlPanel.git
         dest: "{{ repo_folder }}"
         update: yes
+        force: yes
     - name: 创建flask环境
       pip:
         requirements: "{{ repo_folder }}/requirements.txt"
