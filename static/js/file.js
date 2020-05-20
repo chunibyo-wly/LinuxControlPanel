@@ -82,7 +82,6 @@ $(function () {
         // 删除文件
         $("button.file-delete").click(function () {
             delete_file(array2str(path) + $(this).attr("file_name"));
-            get_file_list(array2str(path));
         })
     }
 
@@ -100,6 +99,31 @@ $(function () {
         };
 
         $.ajax(settings).done(function (response) {
+            get_file_list(array2str(path));
+
+        });
+    }
+
+    let upload_file = function (_path) {
+        let form = new FormData();
+        form.append("file", $('#upfile').prop("files")[0]);
+        // form.append("file", $('#upfile').prop('files').files[0]);
+        form.append("path", _path);
+
+        console.log(form)
+
+        let settings = {
+            "url": "/api/file",
+            "method": "PATCH",
+            "timeout": 0,
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form
+        };
+
+        $.ajax(settings).done(function (response) {
+            get_file_list(array2str(path));
         });
     }
 
@@ -117,4 +141,8 @@ $(function () {
 
 
     get_file_list(array2str(path));
+
+    $("#upfile").change(function () {
+        upload_file(array2str(path))
+    })
 })

@@ -1,3 +1,4 @@
+import os
 from subprocess import getstatusoutput, getoutput, Popen, PIPE
 
 
@@ -47,8 +48,8 @@ class FileManager:
         print("rm -rf " + self.path)
         print(getoutput("rm -rf " + self.path))
 
-    def upload(self):
-        pass
+    def upload(self, file):
+        file.save(os.path.join(self.path, file.filename))
 
 
 if __name__ == '__main__':

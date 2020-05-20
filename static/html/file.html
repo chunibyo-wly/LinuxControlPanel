@@ -141,11 +141,17 @@
                         </li>
                     </ol>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <ol class="breadcrumb" id="path">
                         <li></li>
                         <li></li>
                     </ol>
+                </div>
+                <div class="col-lg-2">
+                    <form enctype="multipart/form-data">
+                        <p hidden><input type="file" id="upfile"/></p>
+                        <button class="btn btn-info" onclick="$('#upfile').click()">上传</button>
+                    </form>
                 </div>
             </div>
             <!-- /.row -->

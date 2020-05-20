@@ -14,8 +14,8 @@ class FtpManager(FileManager):
     def delete_file(self):
         super().delete_file()
 
-    def upload(self):
-        super().upload()
+    def upload(self, file):
+        super().upload(file)
 
     @staticmethod
     def install():

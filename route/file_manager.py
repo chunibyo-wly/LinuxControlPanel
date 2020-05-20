@@ -14,8 +14,8 @@ def handle_file_list():
         })
 
 
-@app.route('/api/file', methods=['GET', 'DELETE'])
-def download_file():
+@app.route('/api/file', methods=['GET', 'DELETE', 'PATCH'])
+def handel_file():
     if request.method == 'GET':
         # 下载文件
         print(request.values.get('path'))
@@ -25,4 +25,6 @@ def download_file():
         FileManager(request.json['path']).delete_file()
         return jsonify({"status": "OK"})
     elif request.method == 'PATCH':
+        print(request.form['path'])
+        FileManager(request.form['path']).upload(request.files.get('file'))
         return jsonify({"status": "OK"})

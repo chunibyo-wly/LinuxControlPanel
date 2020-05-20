@@ -1,3 +1,5 @@
+import os
+
 import flask
 from flask import request, jsonify
 
@@ -14,15 +16,15 @@ def handle_ftp_list():
         })
 
 
-@app.route('/api/ftp', methods=['GET', 'DELETE'])
+@app.route('/api/ftp', methods=['GET', 'DELETE', 'PATCH'])
 def handle_ftp():
     if request.method == 'GET':
         # 下载文件
-        print(request.values.get('path'))
-        return flask.send_file(request.values.get('path'), as_attachment=True)
+        return flask.send_file('/srv/ftp' + request.values.get('path'), as_attachment=True)
     elif request.method == 'DELETE':
         # 删除文件
         FtpManager(request.json['path']).delete_file()
         return jsonify({"status": "OK"})
     elif request.method == 'PATCH':
+        FtpManager(request.form['path']).upload(request.files.get('file'))
         return jsonify({"status": "OK"})
