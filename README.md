@@ -1,5 +1,7 @@
 # Linux Control Panel
 
+[![Build Status](http://chunibyo.xyz:8085/job/tapd/badge/icon)](http://chunibyo.xyz:8085/job/tapd/)
+
 ## :one: 主要功能
 
 ### 一、系统监控
