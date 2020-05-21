@@ -99,7 +99,7 @@ vim /etc/resolvconf/resolv.conf.d/base
    gpasswd -d chunibyo test_group
    ```
 
-### 2.3 docker
+### 五、docker
 
 ```bash
 docker run --name some-mysql --restart=always -e MYSQL_ROOT_PASSWORD=foo -d mysql:latest
@@ -109,8 +109,20 @@ docker run --name some-nginx --restart=unless-stopped -d nginx
 docker run --name some-redis --restart=unless-stopped  -d redis
 ```
 
+### 七、网络安全
 
-# :three: DevOps工作流
+1. **添加**拒绝8888端口的tcp连接
+
+   ```bash
+   sudo iptables -t filter -A INPUT -j DROP -p tcp --dport 8888
+   ```
+
+   ![image-20200521151342244](README.assets/image-20200521151342244.png)
+
+2. **删除**拒绝8888端口的tcp连接
+   
+
+## :three: DevOps工作流
 
 ## 3.1 [SonarQube](https://www.fosstechnix.com/install-sonarqube-on-ubuntu/#step-3-download-and-install-sonarqube-on-ubuntu)
 

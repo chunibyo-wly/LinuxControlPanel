@@ -5,10 +5,10 @@ sudo apt install vsftpd
 
 # 2. 创建可以用于上传的文件夹
 if [ ! -d "/srv/ftp/pub"  ]; then
-    mkdir -p /srv/ftp/pub
+    sudo mkdir -p /srv/ftp/pub
 fi
 sudo chown ftp:ftp /srv/ftp/pub
-echo "vsftpd test file" > /srv/ftp/vsftpd_test.txt
+sudo echo "vsftpd test file" > /srv/ftp/vsftpd_test.txt
 
 # 3. 备份配置文件
 file=/etc/vsftpd.conf
@@ -17,7 +17,7 @@ if [ -f "$file" ]; then
 fi
 
 # 4. 输入新的配置文件
-echo "\
+sudo echo "
 listen=NO
 listen_ipv6=YES
 anonymous_enable=YES

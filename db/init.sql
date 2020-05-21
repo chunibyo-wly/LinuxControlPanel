@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS nginx(
+    name TEXT NOT NULL ,
+    port INT NOT NULL
+)

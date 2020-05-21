@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>石之海</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../lib/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../lib/css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../lib/css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <!-- 左上标题 -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Stone of Ocean</a>
+        </div>
+        <!-- 左上标题 -->
+
+        <!-- Top Menu Items -->
+        <!-- 顶栏 -->
+        <ul class="nav navbar-right top-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-envelope"></i>
+                    <b class="caret"></b>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bell"></i>
+                    <b class="caret"></b>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-user"></i> admin
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- 顶栏 -->
+
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <!-- 侧边栏 -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li class="active">
+                    <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> 资源监控</a>
+                </li>
+                <li>
+                    <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> 系统设置</a>
+                </li>
+                <li>
+                    <a href="tables.html"><i class="fa fa-fw fa-table"></i> 定时任务</a>
+                </li>
+                <li>
+                    <a href="forms.html"><i class="fa fa-fw fa-edit"></i> 进程管理</a>
+                </li>
+                <li>
+                    <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> 容器管理</a>
+                </li>
+                <li>
+                    <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> FTP服务</a>
+                </li>
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i
+                            class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="demo" class="collapse">
+                        <li>
+                            <a href="#">Dropdown Item</a>
+                        </li>
+                        <li>
+                            <a href="#">Dropdown Item</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> 网络管理</a>
+                </li>
+                <li>
+                    <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> 深度学习</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- 侧边栏 -->
+    </nav>
+    <!-- 导航栏 -->
+    <!-- Navigation -->
+
+    <div id="page-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <ol class="breadcrumb">
+                        <li class="active">
+                            <i class="fa fa-star"></i> 石之海
+                        </li>
+                        <li class="active">
+                            <i class="fa fa-dashboard"></i> 资源监控
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+
+            <!--第一行-->
+            <div class="row">
+
+                <!--cpu信息-->
+                <div class="col-lg-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> CPU 信息</h3>
+                        </div>
+                        <div class="panel-body" id="cpu_info">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item">
+                                    <span class="badge">{{message['cpu_info']['core_num']}}</span>
+                                    <i class="fa fa-fw fa-calendar"></i> 物理核心数
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <span class="badge">{{message['cpu_info']['cpu_num']}}</span>
+                                    <i class="fa fa-fw fa-comment"></i> CPU 数
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <span class="badge">{{message['cpu_info']['processor_num']}}</span>
+                                    <i class="fa fa-fw fa-truck"></i> 线程数
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <span class="badge">{{message['io_info']['net_io_sent']}}</span>
+                                    <i class="fa fa-fw fa-money"></i> 网络发送
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <span class="badge">{{message['io_info']['net_io_recv']}}</span>
+                                    <i class="fa fa-fw fa-user"></i> 网络接收
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <span class="badge">{{message['io_info']['io_sent']}}</span>
+                                    <i class="fa fa-fw fa-check"></i> 磁盘发送
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <span class="badge">{{message['io_info']['io_recv']}}</span>
+                                    <i class="fa fa-fw fa-globe"></i> 磁盘接收
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    {{message['cpu_info']['model_name']}}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--cpu信息-->
+
+                <!--磁盘占用-->
+                <div class="col-lg-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> 磁盘占用</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="disk" style="width: 350px;height:350px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--磁盘占用-->
+
+                <!--网络io-->
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> 网络IO</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="net-io" style="width: 768px;height:350px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--网络io-->
+
+            </div>
+            <!--第一行-->
+
+            <!--第二行-->
+            <div class="row">
+
+                <!--内存占用-->
+                <div class="col-lg-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> 内存占用</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="mem" style="width: 350px; height:350px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--内存占用-->
+
+                <!--进程(mem序)-->
+                <div class="col-lg-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> 进程(MEM%)</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item">
+                                    <span class="badge">2</span>
+                                    <i class="fa fa-fw fa-calendar"></i> 物理核心数
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <span class="badge">4</span>
+                                    <i class="fa fa-fw fa-comment"></i> CPU 数
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <span class="badge">2</span>
+                                    <i class="fa fa-fw fa-truck"></i> 线程数
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <span class="badge">0</span>
+                                    <i class="fa fa-fw fa-money"></i> 网络发送
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <span class="badge">0</span>
+                                    <i class="fa fa-fw fa-user"></i> 网络接收
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <span class="badge">0</span>
+                                    <i class="fa fa-fw fa-check"></i> 磁盘发送
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <span class="badge">0</span>
+                                    <i class="fa fa-fw fa-globe"></i> 磁盘接收
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <span class="badge">0</span>
+                                    <i class="fa fa-fw fa-globe"></i> 磁盘接收
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--进程(mem序)-->
+
+                <!--磁盘io-->
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> 磁盘IO</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="io" style="width: 768px;height:350px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--磁盘io-->
+
+            </div>
+            <!--第二行-->
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- jQuery -->
+<script src="../lib/js/jquery.js"></script>
+
+<!--vue-->
+<script src="../lib/js/vue.min.js"></script>
+
+<!--<script src="../lib/js/mock-min.js"></script>-->
+<!--<script src="../mock/index.js"></script>-->
+
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../lib/js/bootstrap.min.js"></script>
+
+<!--echarts-->
+<script src="../lib/js/echarts.min.js"></script>
+
+<script src="../js/nginx.js"></script>
+
+
+</body>
+
+</html>
