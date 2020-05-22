@@ -32,6 +32,6 @@
       shell: "cd {{ repo_folder }} && sudo venv/bin/python db/init.py"
 
     - name: start server
-      shell: "nohup sudo {{ repo_folder }}/venv/bin/python {{ repo_folder  }}/main.py > /tmp/LinuxControlPanel.log 2>&1 &"
+      shell: "nohup sudo {{ repo_folder }}/venv/bin/python {{ repo_folder  }}/main.py > /tmp/LinuxControlPanel.log 2>&1"
 
 
