@@ -4,6 +4,11 @@
     repo_folder: /root/Panel
   remote_user: root
   tasks:
+
+    - name: kill old process
+      shell: ps aux | grep main.p[y] | awk '{print $2}' | xargs kill
+      ignore_errors: true
+
     - name: clone repository
       git:
         repo: https://github.com/chunibyo-wly/LinuxControlPanel.git
@@ -17,10 +22,6 @@
         virtualenv: "{{ repo_folder }}/venv"
         virtualenv_command: /usr/bin/python3 -m venv
 
-    - name: kill old process
-      shell: ps aux | grep main.p[y] | awk '{print $2}' | xargs kill
-      ignore_errors: true
-
     - name: install ftp
       shell: "sh {{ repo_folder }}/script/install_ftp.sh"
 
@@ -28,9 +29,9 @@
       shell: "sh {{ repo_folder }}/script/install_nginx.sh"
 
     - name: create database
-      shell: "sudo {{repo_folder}}/venv/bin/python {{ repo_folder  }}/db/init.py"
+      shell: "cd {{ repo_folder }} && sudo venv/bin/python db/init.py"
 
     - name: start server
-      shell: "nohup sudo {{repo_folder}}/venv/bin/python {{ repo_folder  }}/main.py &"
+      shell: "nohup sudo {{ repo_folder }}/venv/bin/python {{ repo_folder  }}/main.py &"
 
 
