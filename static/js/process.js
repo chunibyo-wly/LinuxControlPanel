@@ -10,7 +10,7 @@ $(function () {
         };
 
         $.ajax(settings).done(function (response) {
-            get_process()
+            // get_process()
         });
     }
 
@@ -19,7 +19,7 @@ $(function () {
         proc_array.forEach(function (item) {
             html = html + '' +
                 '<tr pid="' + item["pid"] + '">' +
-                '    <td style="vertical-align: middle;">' + item["proc_name"] + '</td>' +
+                '    <td style="vertical-align: middle;"><a>' + item["proc_name"] + '</a></td>' +
                 '    <td style="vertical-align: middle;">' + item["cpu"] + '</td>' +
                 '    <td style="vertical-align: middle;">' + item["mem"] + '</td>' +
                 '    <td style="vertical-align: middle;">' + item["status"] + '</td>' +
@@ -46,6 +46,7 @@ $(function () {
         });
     }
 
-    get_process();
+    // get_process();
+    setInterval(get_process, 1000);
 
 })

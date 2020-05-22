@@ -17,7 +17,7 @@ from route.login import require_login
 def hello_world():
     # if 'login' not in request.cookies:
     #     return redirect('html/login.html', code=302)
-    return app.send_static_file('html/index.html')
+    return app.send_static_file('index.html')
 
 
 ##################################

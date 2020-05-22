@@ -162,7 +162,7 @@ $(function () {
                 axisPointer: {
                     label: {
                         formatter: function (params) {
-                            return '降水量  ' + params.value
+                            return '接受  ' + params.value
                                 + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
                         }
                     }
@@ -183,7 +183,7 @@ $(function () {
                 axisPointer: {
                     label: {
                         formatter: function (params) {
-                            return '降水量  ' + params.value
+                            return '发送  ' + params.value
                                 + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
                         }
                     }
@@ -198,14 +198,14 @@ $(function () {
         ],
         series: [
             {
-                name: '网络发送',
+                name: '发送',
                 type: 'line',
                 xAxisIndex: 1,
                 smooth: true,
                 data: init_charts_data(12)
             },
             {
-                name: '网络接收',
+                name: '接收',
                 type: 'line',
                 smooth: true,
                 data: init_charts_data(12)

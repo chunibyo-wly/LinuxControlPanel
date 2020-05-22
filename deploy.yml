@@ -4,21 +4,23 @@
     repo_folder: /root/Panel
   remote_user: root
   tasks:
-    - name: 从git仓库下载代码
+    - name: clone repository
       git:
         repo: https://github.com/chunibyo-wly/LinuxControlPanel.git
         dest: "{{ repo_folder }}"
         update: yes
         force: yes
-    - name: 创建flask环境
+    - name: install ftp
+      shell: "sh {{ repo_folder }}/script/install_ftp.sh"
+    - name: create python virtualenv
       pip:
         requirements: "{{ repo_folder }}/requirements.txt"
         virtualenv: "{{ repo_folder }}/venv"
         virtualenv_command: /usr/bin/python3 -m venv
-    - name: 关闭老进程
+    - name: kill old process
       shell: ps aux | grep main.p[y] | awk '{print $2}' | xargs kill
       ignore_errors: true
-    - name: 启动服务
+    - name: start server
       shell: "nohup sudo {{repo_folder}}/venv/bin/python {{ repo_folder  }}/main.py &"
 
 

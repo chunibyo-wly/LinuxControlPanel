@@ -15,7 +15,7 @@ class ProcessManger:
             if proc.exe() not in process:
                 process.append({
                     "pid": i,
-                    "proc_name": proc.exe(),
+                    "proc_name": proc.name(),
                     "mem": round(proc.cpu_percent(), 2),
                     "cpu": round(proc.memory_percent(), 2),
                     "status": proc.status()

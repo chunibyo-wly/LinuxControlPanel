@@ -1,7 +1,8 @@
 #! /bin/sh
 
 # 1. 安装vsftp
-sudo apt install vsftpd
+sudo apt update && sudo apt -y upgrade
+sudo apt install -y vsftpd
 
 # 2. 创建可以用于上传的文件夹
 if [ ! -d "/srv/ftp/pub"  ]; then
