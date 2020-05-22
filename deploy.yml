@@ -10,16 +10,26 @@
         dest: "{{ repo_folder }}"
         update: yes
         force: yes
-    - name: install ftp
-      shell: "sh {{ repo_folder }}/script/install_ftp.sh"
+
     - name: create python virtualenv
       pip:
         requirements: "{{ repo_folder }}/requirements.txt"
         virtualenv: "{{ repo_folder }}/venv"
         virtualenv_command: /usr/bin/python3 -m venv
+
     - name: kill old process
       shell: ps aux | grep main.p[y] | awk '{print $2}' | xargs kill
       ignore_errors: true
+
+    - name: install ftp
+      shell: "sh {{ repo_folder }}/script/install_ftp.sh"
+
+    - name: install nginx
+      shell: "sh {{ repo_folder }}/script/install_nginx.sh"
+
+    - name: create database
+      shell: "sudo {{repo_folder}}/venv/bin/python {{ repo_folder  }}/db/init.py"
+
     - name: start server
       shell: "nohup sudo {{repo_folder}}/venv/bin/python {{ repo_folder  }}/main.py &"
 
