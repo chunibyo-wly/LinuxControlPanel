@@ -5,6 +5,14 @@
   remote_user: root
   tasks:
 
+    - name: "Create directory if not exists"
+      file:
+        path: "{{ repo_folder }}"
+        state: directory
+        mode: 0755
+        group: root
+        owner: root
+
     - name: kill old process
       shell: ps aux | grep main.p[y] | awk '{print $2}' | xargs kill
       ignore_errors: true
