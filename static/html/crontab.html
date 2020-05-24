@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>石之海</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../lib/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../lib/css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../lib/css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <style>
+        .line-limit-length {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <!-- 左上标题 -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../index.html">Stone of Ocean</a>
+        </div>
+        <!-- 左上标题 -->
+
+        <!-- Top Menu Items -->
+        <!-- 顶栏 -->
+        <ul class="nav navbar-right top-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-envelope"></i>
+                    <b class="caret"></b>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bell"></i>
+                    <b class="caret"></b>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-user"></i> admin
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- 顶栏 -->
+
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <!-- 侧边栏 -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li class="active">
+                    <a href="../index.html"><i class="fa fa-fw fa-dashboard"></i> 资源监控</a>
+                </li>
+                <li>
+                    <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> 系统设置</a>
+                </li>
+                <li>
+                    <a href="tables.html"><i class="fa fa-fw fa-table"></i> 定时任务</a>
+                </li>
+                <li>
+                    <a href="forms.html"><i class="fa fa-fw fa-edit"></i> 进程管理</a>
+                </li>
+                <li>
+                    <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> 容器管理</a>
+                </li>
+                <li>
+                    <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> FTP服务</a>
+                </li>
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i
+                            class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="demo" class="collapse">
+                        <li>
+                            <a href="#">Dropdown Item</a>
+                        </li>
+                        <li>
+                            <a href="#">Dropdown Item</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> 网络管理</a>
+                </li>
+                <li>
+                    <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> 深度学习</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- 侧边栏 -->
+    </nav>
+    <!-- 导航栏 -->
+    <!-- Navigation -->
+
+    <div id="page-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <ol class="breadcrumb">
+                        <li class="active">
+                            <i class="fa fa-star"></i> 石之海
+                        </li>
+                        <li class="active">
+                            <i class="fa fa-dashboard"></i> 定时任务
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> 添加计划任务</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" action="#" id="form">
+
+                        <div class="form-group">
+                            <label for="task-name" class="control-label col-sm-2">任务名称</label>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" id="task-name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="task_type" class="control-label col-sm-2">任务类型</label>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <select class="form-control" id="task_type">
+                                        <option value="1">shell 脚本</option>
+                                        <option value="2">OSS备份</option>
+                                        <option value="3">同步时间</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cron-type" class="control-label col-sm-2">执行周期</label>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <select class="form-control" id="cron-type">
+                                        <option value="minute">每分钟</option>
+                                        <option value="hour">每小时</option>
+                                        <option value="day">每天</option>
+                                        <option value="week">每周</option>
+                                        <option value="month">每月</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group oss" hidden>
+                            <label for="task-name" class="control-label col-sm-2">OSS对象名</label>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" id="oss-object-name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group oss" hidden>
+                            <label for="task-name" class="control-label col-sm-2">本地文件路径</label>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" id="oss-local-file" hidden>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="command" class="control-label col-sm-2">脚本内容</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <textarea class="form-control" rows="6" id="command"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">提交</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <br>
+                    <div class="row" style="color: #777777">
+                        <ul>
+                            <li>当添加完备份任务，应该手动运行一次，并检查备份包是否完整</li>
+                            <li>磁盘容量不够、数据库密码错误、网络不稳定等原因，可能导致数据备份不完整</li>
+                            <li>备份站点和目录时支持文件或目录排除，请将需要排除功能的插件升级到最新版，如：阿里云OSS等</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> 任务列表</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped table-bordered text-center">
+                            <thead>
+                            <tr>
+                                <th style="text-align: center">序号</th>
+                                <th style="text-align: center">名称</th>
+                                <th style="text-align: center">命令</th>
+                                <th style="text-align: center">执行周期</th>
+                                <th style="text-align: center">下一次执行时间</th>
+                                <th style="text-align: center">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="cron-list">
+                            <!--                            <tr cron_id="123">-->
+                            <!--                                <td style="vertical-align: middle;">d</td>-->
+                            <!--                                <td style="vertical-align: middle;">d</td>-->
+                            <!--                                <td style="vertical-align: middle;">d</td>-->
+                            <!--                                <td style="vertical-align: middle;">d</td>-->
+                            <!--                                <td style="vertical-align: middle;">d</td>-->
+                            <!--                                <td>-->
+                            <!--                                    <button class="btn btn-sm btn-danger">删除</button>-->
+                            <!--                                </td>-->
+                            <!--                            </tr>-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- jQuery -->
+<script src="../lib/js/jquery.js"></script>
+
+<!--vue-->
+<script src="../lib/js/vue.min.js"></script>
+
+<!--<script src="../lib/js/mock-min.js"></script>-->
+<!--<script src="../mock/index.js"></script>-->
+
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../lib/js/bootstrap.min.js"></script>
+
+<!--echarts-->
+<script src="../lib/js/echarts.min.js"></script>
+
+<script src="../js/crontab.js"></script>
+
+
+</body>
+
+</html>

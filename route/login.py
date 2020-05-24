@@ -9,7 +9,7 @@ from main import app
 @app.route('/api/login', methods=['POST'])
 def log_in():
     print(request.form)
-    with open('./config.yaml', 'r') as f:
+    with open('config/config.yaml', 'r') as f:
         user = yaml.load(f, Loader=yaml.SafeLoader)['user']
         if request.json['name'] == user['name'] and request.json['passwd'] == user['passwd']:
             response = {
@@ -48,5 +48,7 @@ def require_login(**kw):
                 return redirect(url_for('html/login.html'))
             else:
                 return func(*args, **kwargs)
+
         return _ck
+
     return ck

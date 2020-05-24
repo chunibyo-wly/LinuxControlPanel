@@ -36,6 +36,9 @@
     - name: install nginx
       shell: "sh {{ repo_folder }}/script/install_nginx.sh"
 
+    - name: install cron
+      shell: "sh {{ repo_folder }}/script/install_crontab.sh"
+
     - name: create database
       shell: "cd {{ repo_folder }} && sudo venv/bin/python db/init.py"
 

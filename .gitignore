@@ -3,3 +3,4 @@
 ./temp/*
 *.db
 deploy.retry
+config/oss.yaml

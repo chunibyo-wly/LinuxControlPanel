@@ -1,3 +1,4 @@
+from .crontab_manager import *
 from .dns import *
 from .docker_manager import *
 from .file_manager import *
