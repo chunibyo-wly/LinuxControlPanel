@@ -4,3 +4,4 @@
 *.db
 deploy.retry
 config/oss.yaml
+~/*
