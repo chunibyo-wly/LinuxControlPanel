@@ -2,49 +2,74 @@
 
 [![Build Status](http://chunibyo.xyz:8085/buildStatus/icon?job=tapd)](http://chunibyo.xyz:8085/job/tapd/)
 
-## :one: 主要功能
+## :one:How To Use
 
-### 一、系统监控
+1. 配置
 
-1. ~~CPU~~
-2. ~~内存~~
-3. ~~磁盘使用量~~
-4. ~~磁盘IO~~
-5. ~~网络IO~~
-6. SERVER INFO
+```bash
+sh install_nginx.sh
+sh install_crontab.sh
+sh install_ftp.sh
 
-### 二、系统管理
+virtualenv venv
+venv/bin/python main.py
+```
 
-1. ~~DNS设置~~
-2. swap设置(input)
-3. 用户管理(table)
-   1. 暂时只做查询功能, 后期加上数据库
+2. `config`目录下新建`oss.yaml`
 
-### 三、文件管理
+   ```yaml
+   oss:
+     Auth:
+       AccessKeyId: XXXXXXXXXX
+       AccessKeySecret: XXXXXXXXXXX
+     Bucket:
+       EndPoint: XXXXXXXXXXX
+       BucketName: XXXXXXXXXXXX
+   ```
 
-1. 上传
-2. 下载
-3. ~~目录浏览~~
+## :two:功能介绍
 
-### 三、定时任务(table)
+### 2.1 资源监控
 
-### ~~四、进程监控~~
+![image-20200525205201420](README.assets/image-20200525205201420.png)
 
-### ~~五、容器管理~~
+### 2.2 进程管理(每秒刷新)
 
-### ~~六、FTP服务~~
+![image-20200525205235288](README.assets/image-20200525205235288.png)
 
-### 七、iptables
+### 2.3 容器管理
 
-### 八、深度学习环境一键设置
+![image-20200525205309309](README.assets/image-20200525205309309.png)
 
+### 2.4 FTP服务
 
+![image-20200525205526117](README.assets/image-20200525205526117.png)
 
-## :two:后端功能的实现方法
+### 2.5 文件管理
 
-### 二、系统管理
+![image-20200525205554646](README.assets/image-20200525205554646.png)
 
-#### 2.1 DNS设置
+### 2.6 网站管理
+
+![image-20200525210110429](README.assets/image-20200525210110429.png)
+
+![image-20200525210121127](README.assets/image-20200525210121127.png)
+
+![image-20200525210138367](README.assets/image-20200525210138367.png)
+
+![image-20200525210152084](README.assets/image-20200525210152084.png)
+
+### 2.7 定时任务
+
+![image-20200525210249706](README.assets/image-20200525210249706.png)
+
+![image-20200525210550651](README.assets/image-20200525210550651.png)
+
+## :three:后端功能的实现
+
+### 3.1 系统管理
+
+#### 3.1.1 DNS设置
 
 ```bash
 vim /etc/resolvconf/resolv.conf.d/base
@@ -52,7 +77,7 @@ vim /etc/resolvconf/resolv.conf.d/base
 
 ![image-20200509104046360](README.assets/image-20200509104046360.png)
 
-#### 2.2 用户管理
+#### 3.1.2 用户管理
 
 1. 创建user
 
@@ -99,7 +124,7 @@ vim /etc/resolvconf/resolv.conf.d/base
    gpasswd -d chunibyo test_group
    ```
 
-### 五、docker
+### 3.2 docker
 
 ```bash
 docker run --name some-mysql --restart=always -e MYSQL_ROOT_PASSWORD=foo -d mysql:latest
@@ -109,7 +134,7 @@ docker run --name some-nginx --restart=unless-stopped -d nginx
 docker run --name some-redis --restart=unless-stopped  -d redis
 ```
 
-### 七、网络安全
+### 3.3 网络安全
 
 1. **添加**拒绝8888端口的tcp连接
 
@@ -122,9 +147,11 @@ docker run --name some-redis --restart=unless-stopped  -d redis
 2. **删除**拒绝8888端口的tcp连接
    
 
-## :three: DevOps工作流
+## :four: DevOps工作流
 
-## 3.1 [SonarQube](https://www.fosstechnix.com/install-sonarqube-on-ubuntu/#step-3-download-and-install-sonarqube-on-ubuntu)
+
+
+### 4.1 [SonarQube![软件工程综合实习](README.assets/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%BC%E5%90%88%E5%AE%9E%E4%B9%A0.png)](https://www.fosstechnix.com/install-sonarqube-on-ubuntu/#step-3-download-and-install-sonarqube-on-ubuntu)
 
 1. MySQL建库
 
@@ -173,7 +200,7 @@ docker run --name some-redis --restart=unless-stopped  -d redis
 
    ![image-20200516100948576](README.assets/image-20200516100948576.png)
 
-## 3.2 Ansible
+### 4.2 Ansible
 
 `apt`仓库默认安装
 
@@ -184,20 +211,45 @@ docker run --name some-redis --restart=unless-stopped  -d redis
     repo_folder: /root/Panel
   remote_user: root
   tasks:
-    - name: 从git仓库下载代码
+
+    - name: "Create directory if not exists"
+      file:
+        path: "{{ repo_folder }}"
+        state: directory
+        mode: 0755
+        group: root
+        owner: root
+
+    - name: kill old process
+      shell: ps aux | grep main.p[y] | awk '{print $2}' | xargs kill
+      ignore_errors: true
+
+    - name: clone repository
       git:
         repo: https://github.com/chunibyo-wly/LinuxControlPanel.git
         dest: "{{ repo_folder }}"
         update: yes
-    - name: 创建flask环境
+        force: yes
+
+    - name: create python virtualenv
       pip:
         requirements: "{{ repo_folder }}/requirements.txt"
         virtualenv: "{{ repo_folder }}/venv"
         virtualenv_command: /usr/bin/python3 -m venv
-    - name: 关闭老进程
-      shell: ps aux | grep main.p[y] | awk '{print $2}' | xargs kill
-      ignore_errors: true
-    - name: 启动服务
-      shell: "nohup {{repo_folder}}/venv/bin/python {{ repo_folder  }}/main.py &"
+
+    - name: install ftp
+      shell: "sh {{ repo_folder }}/script/install_ftp.sh"
+
+    - name: install nginx
+      shell: "sh {{ repo_folder }}/script/install_nginx.sh"
+
+    - name: install cron
+      shell: "sh {{ repo_folder }}/script/install_crontab.sh"
+
+    - name: create database
+      shell: "cd {{ repo_folder }} && sudo venv/bin/python db/init.py"
+
+    - name: start server
+      shell: "cd {{ repo_folder }} && nohup sudo {{ repo_folder }}/venv/bin/python main.py > /tmp/LinuxControlPanel.log 2>&1 &"
 ```
 
