@@ -23,6 +23,7 @@
         dest: "{{ repo_folder }}"
         update: yes
         force: yes
+        version: master
 
     - name: create python virtualenv
       pip:
