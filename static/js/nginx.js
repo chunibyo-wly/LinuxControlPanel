@@ -41,7 +41,7 @@ $(function () {
                 '        <div class="panel-footer">' +
                 '            <a class="pull-left"' +
                 '               style="cursor: pointer; text-decoration: none;" ' +
-                'web_name="' + web_array[i]['name'] + '"' +
+                '               web_name="' + web_array[i]['name'] + '"' +
                 '               onclick="">删除</a>' +
                 '            <a href="http://' + window.location.hostname + ':' + web_array[i]['port'] + '" target="_blank">' +
                 '                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>' +

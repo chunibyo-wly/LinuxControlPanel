@@ -342,4 +342,15 @@ $(function () {
         });
     }, 2000);
 
+    $("#logout").click(function () {
+        let settings = {
+            "url": "/api/logout",
+            "method": "POST",
+            "timeout": 0,
+        };
+
+        $.ajax(settings).done(function (response) {
+            window.location.href = "http://" + window.location.host;
+        });
+    })
 })

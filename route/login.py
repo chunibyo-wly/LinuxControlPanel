@@ -8,7 +8,6 @@ from main import app
 
 @app.route('/api/login', methods=['POST'])
 def log_in():
-    print(request.form)
     with open('config/config.yaml', 'r') as f:
         user = yaml.load(f, Loader=yaml.SafeLoader)['user']
         if request.json['name'] == user['name'] and request.json['passwd'] == user['passwd']:
@@ -37,18 +36,3 @@ def log_out():
     resp = make_response(response)
     resp.delete_cookie('login')
     return resp
-
-
-# 验证登录的修饰器
-def require_login(**kw):
-    def ck(func):
-        @wraps(func)
-        def _ck(*args, **kwargs):
-            if 'login' not in request.cookies:
-                return redirect(url_for('html/login.html'))
-            else:
-                return func(*args, **kwargs)
-
-        return _ck
-
-    return ck
