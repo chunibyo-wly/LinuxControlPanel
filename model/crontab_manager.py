@@ -5,7 +5,7 @@ import sqlite3
 from subprocess import getoutput
 from crontab import CronTab
 
-from model.sql import execute, insert
+from model.sql_func import execute, insert
 
 
 class CrontabManager:

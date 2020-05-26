@@ -23,8 +23,8 @@ def insert(*args, **kwargs):
     return result
 
 
-if __name__ == '__main__':
-    execute('INSERT INTO NGINX (name, port) values (?, ?)', ('a', 8500))
-    a = execute('SELECT * FROM nginx WHERE name = ?', ("a",))
-    execute('DELETE FROM nginx WHERE name = ?', ("a",))
-    print(a)
+# if __name__ == '__main__':
+#     execute('INSERT INTO NGINX (name, port) values (?, ?)', ('a', 8500))
+#     a = execute('SELECT * FROM nginx WHERE name = ?', ("a",))
+#     execute('DELETE FROM nginx WHERE name = ?', ("a",))
+#     print(a)

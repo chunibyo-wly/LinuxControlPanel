@@ -1,7 +1,7 @@
 from subprocess import getoutput
 
 from model.file_manager import FileManager
-from model.sql import execute
+from model.sql_func import execute
 
 
 class NginxManger:

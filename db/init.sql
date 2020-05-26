@@ -11,3 +11,19 @@ CREATE TABLE IF NOT EXISTS crontab
     command     TEXT NOT NULL,
     description TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS ufw_port
+(
+    rule_id     INTEGER PRIMARY KEY AUTOINCREMENT,
+    port        INTEGER NOT NULL,
+    protocol    TEXT    NOT NULL,
+    description TEXT    NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS ufw_ip
+(
+    rule_id     INTEGER PRIMARY KEY AUTOINCREMENT,
+    ip          TEXT NOT NULL,
+    protocol    TEXT NOT NULL,
+    description TEXT NOT NULL
+);
