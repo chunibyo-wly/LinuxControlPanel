@@ -40,11 +40,11 @@
     - name: install cron
       shell: "sh {{ repo_folder }}/script/install_crontab.sh"
 
-    - name: install ufw
-      shell: "sh {{ repo_folder }}/script/install_ufw.sh"
-
     - name: create database
       shell: "cd {{ repo_folder }} && sudo venv/bin/python db/init.py"
+
+    - name: install ufw
+      shell: "sh {{ repo_folder }}/script/install_ufw.sh"
 
     - name: start server
       shell: "cd {{ repo_folder }} && nohup sudo {{ repo_folder }}/venv/bin/python main.py > /tmp/LinuxControlPanel.log 2>&1 &"

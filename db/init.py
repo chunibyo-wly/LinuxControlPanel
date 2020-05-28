@@ -14,5 +14,17 @@ cursor.executescript(open('db/init.sql', 'r').read())
 conn.commit()
 conn.close()
 
-PortManager(22, 'tcp').add_allow_port('ssh 连接')
-PortManager(8888, 'tcp').add_allow_port('主页')
+result = PortManager.get_allow_port()
+
+flagA = True
+flagB = True
+for i in result:
+    if i['port'] == 22:
+        flagA = False
+    elif i['port'] == 8888:
+        flagB = False
+
+if flagA:
+    PortManager(22, 'tcp').add_allow_port('ssh')
+if flagB:
+    PortManager(8888, 'tcp').add_allow_port('web')
