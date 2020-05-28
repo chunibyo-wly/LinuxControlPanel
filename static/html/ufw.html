@@ -149,11 +149,16 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         <i class="fa fa-clock-o fa-fw"></i>
-                        添加计划任务
-                        <i class="fa fa-plus-square-o fa-fw pull-right"></i>
+                        放行端口
+                        <i
+                                class="fa fa-plus-square-o fa-fw pull-right"
+                                style="cursor: pointer"
+                                data-toggle="modal"
+                                data-target="#portModal"
+                        >
+                        </i>
                     </h3>
                 </div>
-
 
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -161,22 +166,15 @@
                             <thead>
                             <tr>
                                 <th style="text-align: center">序号</th>
-                                <th style="text-align: center">端口</th>
+                                <th style="text-align: center">放行端口</th>
                                 <th style="text-align: center">协议</th>
                                 <th style="text-align: center">说明</th>
                                 <th style="text-align: center">操作</th>
                             </tr>
                             </thead>
                             <tbody id="port-list">
-                            <tr port_id="123">
-                                <td style="vertical-align: middle;">d</td>
-                                <td style="vertical-align: middle;">d</td>
-                                <td style="vertical-align: middle;">d</td>
-                                <td style="vertical-align: middle;">d</td>
-                                <td>
-                                    <a>删除</a>
-                                </td>
-                            </tr>
+
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -184,7 +182,17 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> 任务列表</h3>
+                    <h3 class="panel-title">
+                        <i class="fa fa-clock-o fa-fw"></i>
+                        放行端口
+                        <i
+                                class="fa fa-plus-square-o fa-fw pull-right"
+                                style="cursor: pointer"
+                                data-toggle="modal"
+                                data-target="#ipModal"
+                        >
+                        </i>
+                    </h3>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -192,24 +200,13 @@
                             <thead>
                             <tr>
                                 <th style="text-align: center">序号</th>
-                                <th style="text-align: center">名称</th>
-                                <th style="text-align: center">命令</th>
-                                <th style="text-align: center">执行周期</th>
-                                <th style="text-align: center">下一次执行时间</th>
+                                <th style="text-align: center">拒绝地址</th>
+                                <th style="text-align: center">协议</th>
+                                <th style="text-align: center">说明</th>
                                 <th style="text-align: center">操作</th>
                             </tr>
                             </thead>
-                            <tbody id="cron-list">
-                            <!--                            <tr cron_id="123">-->
-                            <!--                                <td style="vertical-align: middle;">d</td>-->
-                            <!--                                <td style="vertical-align: middle;">d</td>-->
-                            <!--                                <td style="vertical-align: middle;">d</td>-->
-                            <!--                                <td style="vertical-align: middle;">d</td>-->
-                            <!--                                <td style="vertical-align: middle;">d</td>-->
-                            <!--                                <td>-->
-                            <!--                                    <button class="btn btn-sm btn-danger">删除</button>-->
-                            <!--                                </td>-->
-                            <!--                            </tr>-->
+                            <tbody id="ip-list">
                             </tbody>
                         </table>
                     </div>
@@ -224,11 +221,106 @@
 </div>
 <!-- /.container-fluid -->
 
-</div>
-<!-- /#page-wrapper -->
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="portModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    添加放行端口
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="port">请输入端口号</label>
+                        <input type="text" class="form-control" placeholder="8080" id="port">
+                    </div>
 
-</div>
-<!-- /#wrapper -->
+                    <div class="form-group">
+                        <label for="protocol1">协议类型</label>
+                        <select class="form-control" id="protocol1">
+                            <option value="tcp">tcp</option>
+                            <option value="udp">udp</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description1">说明</label>
+                        <textarea class="form-control" id="description1"></textarea>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary"
+                        data-dismiss="modal" id="port-submit">
+                    提交
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="ipModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">
+                    添加放行端口
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+
+                    <div class="form-group">
+                        <label for="port">请输入拒绝ip</label>
+                        <input type="text" class="form-control" placeholder="" id="ip">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="protocol1">协议类型</label>
+                        <select class="form-control" id="protocol2">
+                            <option value="tcp">tcp</option>
+                            <option value="udp">udp</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description1">说明</label>
+                        <textarea class="form-control" id="description2"></textarea>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary"
+                        data-dismiss="modal" id="ip-submit">
+                    提交
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <!-- jQuery -->
 <script src="../lib/js/jquery.js"></script>
@@ -236,17 +328,13 @@
 <!--vue-->
 <script src="../lib/js/vue.min.js"></script>
 
-<!--<script src="../lib/js/mock-min.js"></script>-->
-<!--<script src="../mock/index.js"></script>-->
-
-
 <!-- Bootstrap Core JavaScript -->
 <script src="../lib/js/bootstrap.min.js"></script>
 
 <!--echarts-->
 <script src="../lib/js/echarts.min.js"></script>
 
-<script src="../js/crontab.js"></script>
+<script src="../js/ufw.js"></script>
 
 
 </body>
