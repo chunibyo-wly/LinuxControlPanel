@@ -1,4 +1,8 @@
 import sqlite3
+import sys, os
+
+sys.path.append(os.path.join(os.getcwd()))
+print(sys.path)
 
 from model.ufw_manager import PortManager
 
