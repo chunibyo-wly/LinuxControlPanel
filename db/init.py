@@ -1,6 +1,6 @@
 import sqlite3
 
-from ufw_manager import PortManager
+from model.ufw_manager import PortManager
 
 conn = sqlite3.connect('db/Linux.db')
 cursor = conn.cursor()

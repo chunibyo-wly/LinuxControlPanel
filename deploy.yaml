@@ -40,6 +40,9 @@
     - name: install cron
       shell: "sh {{ repo_folder }}/script/install_crontab.sh"
 
+    - name: install ufw
+      shell: "sh {{ repo_folder }}/script/install_ufw.sh"
+
     - name: create database
       shell: "cd {{ repo_folder }} && sudo venv/bin/python db/init.py"
 
