@@ -4,6 +4,8 @@ from time import sleep
 
 import psutil
 
+from model.process_manager import ProcessManger
+
 
 class SystemWatch:
     def __init__(self):
@@ -61,3 +63,21 @@ class SystemWatch:
             'io_sent': round((cur_io_sent - pre_io_sent)),
             'io_recv': round((cur_io_recv - pre_io_recv))
         }
+
+    @staticmethod
+    def get_netstat_info():
+        # laddr means local address and raddr means remote address of the socket.
+        result = []
+        for i in psutil.net_connections():
+            if i.status == 'ESTABLISHED':
+                result.append(ProcessManger(i.pid).get_process())
+                result[-1]["laddr_ip"] = i.laddr.ip
+                result[-1]["laddr_port"] = i.laddr.port
+                result[-1]["raddr_ip"] = i.raddr.ip
+                result[-1]["raddr_port"] = i.raddr.port
+
+        return result
+
+
+if __name__ == '__main__':
+    SystemWatch.get_netstat_info()

@@ -12,3 +12,8 @@ def get_sys_info():
         'disk_info': SystemWatch.get_disk_info(),
         'io_info': SystemWatch.get_io_info()
     })
+
+
+@app.route('/api/netstat', methods=['GET'])
+def get_netstat():
+    return jsonify(SystemWatch.get_netstat_info()[:20])

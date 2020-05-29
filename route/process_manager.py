@@ -9,7 +9,7 @@ def get_process():
     if request.method == 'GET':
         return jsonify(
             sorted(
-                ProcessManger.get_process(),
+                ProcessManger.get_processes(),
                 key=lambda item: item['cpu'],
                 reverse=True
             )[:20]
