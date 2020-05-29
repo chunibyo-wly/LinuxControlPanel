@@ -15,6 +15,7 @@
 
     - name: kill old process
       shell: ps aux | grep main.p[y] | awk '{print $2}' | xargs kill
+      ignore_errors: true
 
     - name: clone repository
       git:
