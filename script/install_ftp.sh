@@ -37,6 +37,8 @@ rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
 rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
 ssl_enable=NO
 utf8_filesystem=YES
+pasv_min_port=8500
+pasv_max_port=8600
 " > /etc/vsftpd.conf
 
 
