@@ -1,6 +1,6 @@
 # Linux Control Panel
 
-[![bilibili 演示](https://img.shields.io/badge/bilibili-演示-EE6F98)]()
+[![bilibili 演示](https://img.shields.io/badge/bilibili-演示-EE6F98)](https://www.bilibili.com/video/BV16z411v7D2/)
 
 [![Build Status](http://chunibyo.xyz:8085/buildStatus/icon?job=tapd)](http://chunibyo.xyz:8085/job/tapd/)
 
