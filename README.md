@@ -1,15 +1,15 @@
 # Linux Control Panel
 
+[![bilibili 演示](https://img.shields.io/badge/bilibili-演示-EE6F98)]()
+
 [![Build Status](http://chunibyo.xyz:8085/buildStatus/icon?job=tapd)](http://chunibyo.xyz:8085/job/tapd/)
 
-## :one:How To Use
+## :one: How To Use
 
 1. 配置
 
 ```bash
-sh install_nginx.sh
-sh install_crontab.sh
-sh install_ftp.sh
+sh script/install_*
 
 virtualenv venv
 venv/bin/python main.py
@@ -27,7 +27,7 @@ venv/bin/python main.py
        BucketName: XXXXXXXXXXXX
    ```
 
-## :two:功能介绍
+## :two: 功能介绍
 
 ### 2.1 资源监控
 
@@ -65,7 +65,7 @@ venv/bin/python main.py
 
 ![image-20200525210550651](README.assets/image-20200525210550651.png)
 
-## :three:后端功能的实现
+## :three: 后端功能的实现
 
 ### 3.1 系统管理
 
@@ -147,11 +147,11 @@ docker run --name some-redis --restart=unless-stopped  -d redis
 2. **删除**拒绝8888端口的tcp连接
    
 
-## :four: DevOps工作流
+## :four: ​DevOps工作流
 
+![软件工程综合实习](README.assets/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%BC%E5%90%88%E5%AE%9E%E4%B9%A0.png)
 
-
-### 4.1 [SonarQube![软件工程综合实习](README.assets/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%BC%E5%90%88%E5%AE%9E%E4%B9%A0.png)](https://www.fosstechnix.com/install-sonarqube-on-ubuntu/#step-3-download-and-install-sonarqube-on-ubuntu)
+### 4.1 [SonarQube](https://www.fosstechnix.com/install-sonarqube-on-ubuntu/#step-3-download-and-install-sonarqube-on-ubuntu)
 
 1. MySQL建库
 
